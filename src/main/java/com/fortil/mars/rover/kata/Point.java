@@ -30,7 +30,7 @@ public class Point {
     }
 
     public int getForwardLocation() {
-        return getLocation() + 1;
+        return (getLocation() + 1) % (getMaxLocation() + 1);
     }
 
     public int getBackwardLocation() {

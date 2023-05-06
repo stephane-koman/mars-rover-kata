@@ -52,4 +52,10 @@ public class PointUT {
         int expected = point.getLocation() - 1;
         assertThat(point.getBackwardLocation()).isEqualTo(expected);
     }
+
+    @Test
+    public void getForwardLocation_should_set_value_to_zero_if_max_location_is_passed() throws LocationException {
+        point = new Point(maxLocation, maxLocation);
+        assertThat(point.getForwardLocation()).isZero();
+    }
 }

@@ -40,4 +40,16 @@ public class PointUT {
     void maxLocation_less_than_location_should_throw_LocationException(){
         Assertions.assertThrows(LocationException.class, () -> new Point(location, 1));
     }
+
+    @Test
+    void getForwardLocation_should_increase_point_value_by_one(){
+        int expected = point.getLocation() + 1;
+        assertThat(point.getForwardLocation()).isEqualTo(expected);
+    }
+
+    @Test
+    void getBackwardLocation_should_decrease_point_value_by_one(){
+        int expected = point.getLocation() - 1;
+        assertThat(point.getBackwardLocation()).isEqualTo(expected);
+    }
 }

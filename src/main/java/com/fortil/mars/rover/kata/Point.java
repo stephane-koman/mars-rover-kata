@@ -28,4 +28,12 @@ public class Point {
     public int getMaxLocation() {
         return maxLocation;
     }
+
+    public int getForwardLocation() {
+        return getLocation() + 1;
+    }
+
+    public int getBackwardLocation() {
+        return getLocation() - 1;
+    }
 }

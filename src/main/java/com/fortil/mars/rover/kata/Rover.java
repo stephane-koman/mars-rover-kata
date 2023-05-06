@@ -38,4 +38,8 @@ public class Rover {
             if(!receiveSingleCommand(command)) break;
         }
     }
+
+    public String getPosition() {
+        return getCoordinates().toString();
+    }
 }

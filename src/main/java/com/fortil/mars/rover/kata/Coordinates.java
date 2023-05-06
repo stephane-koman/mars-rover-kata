@@ -10,6 +10,7 @@ public class Coordinates {
     private final Point y;
     private Direction direction;
     private List<Obstacle> obstacles;
+    private boolean obstacleFounded = false;
 
     public Coordinates(Point x, Point y, Direction direction, List<Obstacle> obstacles) {
         this.x = x;
@@ -49,6 +50,7 @@ public class Coordinates {
     private boolean hasObstacle(int xLocation, int yLocation) {
         for (Obstacle obstacle: obstacles) {
             if(obstacle.x() == xLocation && obstacle.y() == yLocation) {
+                obstacleFounded = true;
                 return true;
             }
         }
@@ -94,6 +96,10 @@ public class Coordinates {
 
     @Override
     public String toString() {
-        return "X=" + getX().getLocation() + ", Y=" + getY().getLocation() + ", D=" + getDirection().getShortName();
+        String status = "";
+        if(obstacleFounded) {
+            status = " OBSTACLE_FOUND";
+        }
+        return "X=" + getX().getLocation() + ", Y=" + getY().getLocation() + ", D=" + getDirection().getShortName() + status;
     }
 }

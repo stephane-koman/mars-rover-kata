@@ -102,4 +102,18 @@ public class RoverUT {
         assertThat(rover.getCoordinates().getX().getLocation()).isEqualTo(expected);
         assertThat(rover.getCoordinates().getDirection()).isEqualTo(Direction.EAST);
     }
+
+    @Test
+    void position_should_return_X_Y_and_direction() throws Exception {
+        rover.receiveCommands("BBRFF");
+        assertThat(rover.getPosition()).isEqualTo("X=0, Y=3, D=W");
+    }
+
+    @Test
+    public void position_should_return_Bad_status_when_obstacle_is_found() throws Exception {
+        rover.getCoordinates().setObstacles(List.of(new Obstacle(x.getLocation() + 1, y.getLocation())));
+        rover.getCoordinates().setDirection(Direction.WEST);
+        rover.receiveCommands("B");
+        assertThat(rover.getPosition()).endsWith(" OBSTACLE_FOUND");
+    }
 }

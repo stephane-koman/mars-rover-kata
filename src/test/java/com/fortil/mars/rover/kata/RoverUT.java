@@ -35,4 +35,11 @@ public class RoverUT {
     void new_instance_should_set_rover_coordinates_and_direction() {
         assertThat(rover.getCoordinates()).usingRecursiveComparison().isEqualTo(roverCoordinates);
     }
+
+    @Test
+    void receive_single_command_should_move_forward_when_command_is_F() {
+        int expected = y.getLocation() - 1;
+        rover.receiveSingleCommand('F');
+        assertThat(rover.getCoordinates().getY().getLocation()).isEqualTo(expected);
+    }
 }

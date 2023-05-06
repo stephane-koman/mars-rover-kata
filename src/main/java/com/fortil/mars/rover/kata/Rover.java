@@ -10,4 +10,10 @@ public class Rover {
     public Coordinates getCoordinates() {
         return coordinates;
     }
+
+    public void receiveSingleCommand(char command) {
+        if(command == 'F'){
+            getCoordinates().moveForward();
+        }
+    }
 }

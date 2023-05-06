@@ -42,4 +42,11 @@ public class RoverUT {
         rover.receiveSingleCommand('F');
         assertThat(rover.getCoordinates().getY().getLocation()).isEqualTo(expected);
     }
+
+    @Test
+    void receive_single_command_should_move_backward_when_command_is_B() {
+        int expected = y.getLocation() + 1;
+        rover.receiveSingleCommand('B');
+        assertThat(rover.getCoordinates().getY().getLocation()).isEqualTo(expected);
+    }
 }

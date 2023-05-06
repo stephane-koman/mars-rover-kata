@@ -15,5 +15,8 @@ public class Rover {
         if(command == 'F'){
             getCoordinates().moveForward();
         }
+        if(command == 'B'){
+            getCoordinates().moveBackward();
+        }
     }
 }

@@ -2,6 +2,8 @@ package com.fortil.mars.rover.kata;
 
 import com.fortil.mars.rover.kata.enums.Direction;
 import com.fortil.mars.rover.kata.exceptions.LocationException;
+import com.fortil.mars.rover.kata.exceptions.UnknownCommandException;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -37,34 +39,41 @@ public class RoverUT {
     }
 
     @Test
-    void receive_single_command_should_move_forward_when_command_is_F() {
+    void receive_single_command_should_move_forward_when_command_is_F() throws UnknownCommandException {
         int expected = y.getLocation() - 1;
         rover.receiveSingleCommand('F');
         assertThat(rover.getCoordinates().getY().getLocation()).isEqualTo(expected);
     }
 
     @Test
-    void receive_single_command_should_move_backward_when_command_is_B() {
+    void receive_single_command_should_move_backward_when_command_is_B() throws UnknownCommandException {
         int expected = y.getLocation() + 1;
         rover.receiveSingleCommand('B');
         assertThat(rover.getCoordinates().getY().getLocation()).isEqualTo(expected);
     }
 
     @Test
-    void receive_single_command_should_turn_left_when_command_is_L() {
+    void receive_single_command_should_turn_left_when_command_is_L() throws UnknownCommandException {
         rover.receiveSingleCommand('L');
         assertThat(rover.getCoordinates().getDirection()).isEqualTo(Direction.EAST);
     }
 
     @Test
-    void receive_single_command_should_turn_right_when_command_is_R() {
+    void receive_single_command_should_turn_right_when_command_is_R() throws UnknownCommandException {
         rover.receiveSingleCommand('R');
         assertThat(rover.getCoordinates().getDirection()).isEqualTo(Direction.WEST);
     }
 
     @Test
-    void receive_single_command_should_ign_case() {
+    void receive_single_command_should_ign_case() throws UnknownCommandException {
         rover.receiveSingleCommand('l');
         assertThat(rover.getCoordinates().getDirection()).isEqualTo(Direction.EAST);
+    }
+
+    @Test
+    void receive_single_command_should_throw_UnknownCommandException_when_command_is_unknown() {
+        Assertions.assertThrows(UnknownCommandException.class, () -> {
+            rover.receiveSingleCommand('Z');
+        });
     }
 }

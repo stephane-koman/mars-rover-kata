@@ -4,7 +4,7 @@ import com.fortil.mars.rover.kata.exceptions.LocationException;
 
 public class Point {
 
-    private final int location;
+    private int location;
     private final int maxLocation;
 
     public Point(int location, int maxLocation) throws LocationException {
@@ -35,5 +35,9 @@ public class Point {
 
     public int getBackwardLocation() {
         return getLocation() > 0 ? getLocation() - 1 : getMaxLocation();
+    }
+
+    public void setLocation(int location) {
+        this.location = location;
     }
 }

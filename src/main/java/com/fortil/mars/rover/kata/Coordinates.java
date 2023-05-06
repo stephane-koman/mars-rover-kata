@@ -80,4 +80,10 @@ public class Coordinates {
     public String toString() {
         return "X=" + getX().getLocation() + ", Y=" + getY().getLocation() + ", D=" + getDirection().getShortName();
     }
+
+    public void goToLeft() {
+        int directionsLength = Direction.values().length;
+        int index = (directionsLength + direction.getValue() - 1) % directionsLength;
+        direction = Direction.values()[index];
+    }
 }

@@ -58,4 +58,10 @@ public class PointUT {
         point = new Point(maxLocation, maxLocation);
         assertThat(point.getForwardLocation()).isZero();
     }
+
+    @Test
+    public void getBackwardLocation_should_set_value_to_maxLocation_if_zero_location_is_passed() throws LocationException {
+        point = new Point(0, maxLocation);
+        assertThat(point.getBackwardLocation()).isEqualTo(point.getMaxLocation());
+    }
 }

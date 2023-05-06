@@ -34,6 +34,6 @@ public class Point {
     }
 
     public int getBackwardLocation() {
-        return getLocation() - 1;
+        return getLocation() > 0 ? getLocation() - 1 : getMaxLocation();
     }
 }

@@ -76,4 +76,13 @@ public class CoordinatesUT {
         coordinates.moveForward();
         assertThat(coordinates.getY()).usingRecursiveComparison().isEqualTo(expected);
     }
+
+    @Test
+    public void move_forward_should_not_change_location_when_obstacle_is_found() {
+        int expected = x.getLocation();
+        coordinates.setDirection(Direction.EAST);
+        coordinates.setObstacles(List.of(new Obstacle(x.getLocation() + 1, y.getLocation())));
+        coordinates.move(coordinates.getDirection());
+        assertThat(coordinates.getX().getLocation()).isEqualTo(expected);
+    }
 }

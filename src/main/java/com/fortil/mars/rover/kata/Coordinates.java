@@ -9,7 +9,7 @@ public class Coordinates {
     private final Point x;
     private final Point y;
     private Direction direction;
-    private final List<Obstacle> obstacles;
+    private List<Obstacle> obstacles;
 
     public Coordinates(Point x, Point y, Direction direction, List<Obstacle> obstacles) {
         this.x = x;
@@ -39,11 +39,36 @@ public class Coordinates {
     }
 
     public void moveForward() {
-        switch (direction) {
-            case EAST -> x.setLocation(x.getForwardLocation());
-            case WEST -> x.setLocation(x.getBackwardLocation());
-            case NORTH -> y.setLocation(y.getForwardLocation());
-            case SOUTH -> y.setLocation(y.getBackwardLocation());
+        move(direction);
+    }
+
+    public void setObstacles(List<Obstacle> obstacles) {
+        this.obstacles = obstacles;
+    }
+
+    private boolean hasObstacle(int xLocation, int yLocation) {
+        for (Obstacle obstacle: obstacles) {
+            if(obstacle.x() == xLocation && obstacle.y() == yLocation) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void move(Direction newDirection) {
+        int xLocation = x.getLocation();
+        int yLocation = y.getLocation();
+
+        switch (newDirection) {
+            case EAST -> xLocation = x.getForwardLocation();
+            case WEST -> xLocation = x.getBackwardLocation();
+            case NORTH -> yLocation = y.getForwardLocation();
+            case SOUTH -> yLocation = y.getBackwardLocation();
+        }
+
+        if(!hasObstacle(xLocation, yLocation)){
+            x.setLocation(xLocation);
+            y.setLocation(yLocation);
         }
     }
 }

@@ -127,4 +127,9 @@ public class CoordinatesUT {
         assertThat(coordinates.getY()).usingRecursiveComparison().isEqualTo(expected);
     }
 
+    @Test
+    public void toString_should_return_X_Y_and_direction() {
+        String expected = "X=" + x.getLocation() + ", Y=" + y.getLocation() + ", D=" + direction.getShortName();
+        assertThat(coordinates.toString()).isEqualTo(expected);
+    }
 }

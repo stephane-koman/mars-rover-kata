@@ -75,4 +75,9 @@ public class Coordinates {
     public void moveBackward() {
         move(direction.getBackwardDirection());
     }
+
+    @Override
+    public String toString() {
+        return "X=" + getX().getLocation() + ", Y=" + getY().getLocation() + ", D=" + getDirection().getShortName();
+    }
 }

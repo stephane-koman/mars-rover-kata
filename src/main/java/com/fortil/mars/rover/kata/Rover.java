@@ -12,17 +12,11 @@ public class Rover {
     }
 
     public void receiveSingleCommand(char command) {
-        if(command == 'F'){
-            getCoordinates().moveForward();
-        }
-        if(command == 'B'){
-            getCoordinates().moveBackward();
-        }
-        if(command == 'L'){
-            getCoordinates().goToLeft();
-        }
-        if(command == 'R'){
-            getCoordinates().goToRight();
+        switch (Character.toUpperCase(command)){
+            case 'F' -> getCoordinates().moveForward();
+            case 'B' -> getCoordinates().moveBackward();
+            case 'R' -> getCoordinates().goToRight();
+            case 'L' -> getCoordinates().goToLeft();
         }
     }
 }

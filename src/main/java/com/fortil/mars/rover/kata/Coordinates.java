@@ -71,4 +71,8 @@ public class Coordinates {
             y.setLocation(yLocation);
         }
     }
+
+    public void moveBackward() {
+        move(direction.getBackwardDirection());
+    }
 }

@@ -85,4 +85,46 @@ public class CoordinatesUT {
         coordinates.move(coordinates.getDirection());
         assertThat(coordinates.getX().getLocation()).isEqualTo(expected);
     }
+
+    @Test
+    public void move_backward_should_not_change_location_when_obstacle_is_found() {
+        int expected = x.getLocation();
+        coordinates.setDirection(Direction.WEST);
+        coordinates.setObstacles(List.of(new Obstacle(x.getLocation() - 1, y.getLocation())));
+        coordinates.move(coordinates.getDirection());
+        assertThat(coordinates.getX().getLocation()).isEqualTo(expected);
+    }
+
+    @Test
+    void move_backward_should_decrease_x_when_direction_is_east() throws LocationException {
+        Point expected = new Point(x.getLocation() - 1, x.getMaxLocation());
+        coordinates.setDirection(Direction.EAST);
+        coordinates.moveBackward();
+        assertThat(coordinates.getX()).usingRecursiveComparison().isEqualTo(expected);
+    }
+
+    @Test
+    void move_backward_should_decrease_y_when_direction_is_north() throws LocationException {
+        Point expected = new Point(y.getLocation() - 1, y.getMaxLocation());
+        coordinates.setDirection(Direction.NORTH);
+        coordinates.moveBackward();
+        assertThat(coordinates.getY()).usingRecursiveComparison().isEqualTo(expected);
+    }
+
+    @Test
+    void move_backward_should_increase_x_when_direction_is_west() throws LocationException {
+        Point expected = new Point(x.getLocation() + 1, x.getMaxLocation());
+        coordinates.setDirection(Direction.WEST);
+        coordinates.moveBackward();
+        assertThat(coordinates.getX()).usingRecursiveComparison().isEqualTo(expected);
+    }
+
+    @Test
+    void move_backward_should_increase_y_when_direction_is_south() throws LocationException {
+        Point expected = new Point(y.getLocation() + 1, y.getMaxLocation());
+        coordinates.setDirection(Direction.SOUTH);
+        coordinates.moveBackward();
+        assertThat(coordinates.getY()).usingRecursiveComparison().isEqualTo(expected);
+    }
+
 }

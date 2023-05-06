@@ -55,4 +55,10 @@ public class RoverUT {
         rover.receiveSingleCommand('L');
         assertThat(rover.getCoordinates().getDirection()).isEqualTo(Direction.EAST);
     }
+
+    @Test
+    void receive_single_command_should_turn_right_when_command_is_R() {
+        rover.receiveSingleCommand('R');
+        assertThat(rover.getCoordinates().getDirection()).isEqualTo(Direction.WEST);
+    }
 }

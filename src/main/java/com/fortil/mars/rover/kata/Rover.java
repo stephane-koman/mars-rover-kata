@@ -21,5 +21,8 @@ public class Rover {
         if(command == 'L'){
             getCoordinates().goToLeft();
         }
+        if(command == 'R'){
+            getCoordinates().goToRight();
+        }
     }
 }

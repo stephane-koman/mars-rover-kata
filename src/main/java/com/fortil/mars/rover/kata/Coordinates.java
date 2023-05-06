@@ -76,14 +76,22 @@ public class Coordinates {
         move(direction.getBackwardDirection());
     }
 
+    public void goToLeft() {
+        changeDirection(-1);
+    }
+
+    public void goToRight() {
+        changeDirection(1);
+    }
+
+    private void changeDirection(int step) {
+        int directionsLength = Direction.values().length;
+        int index = (directionsLength + direction.getValue() + step) % directionsLength;
+        direction = Direction.values()[index];
+    }
+
     @Override
     public String toString() {
         return "X=" + getX().getLocation() + ", Y=" + getY().getLocation() + ", D=" + getDirection().getShortName();
-    }
-
-    public void goToLeft() {
-        int directionsLength = Direction.values().length;
-        int index = (directionsLength + direction.getValue() - 1) % directionsLength;
-        direction = Direction.values()[index];
     }
 }

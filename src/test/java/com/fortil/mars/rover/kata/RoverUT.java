@@ -76,4 +76,13 @@ public class RoverUT {
             rover.receiveSingleCommand('Z');
         });
     }
+
+    @Test
+    void rover_should_be_able_to_receive_multiple_commands() throws UnknownCommandException {
+        int xExpected = x.getLocation() + 1;
+        rover.receiveCommands("FLFRF");
+        assertThat(rover.getCoordinates().getX().getLocation()).isEqualTo(xExpected);
+        assertThat(rover.getCoordinates().getY().getLocation()).isEqualTo(y.getMaxLocation());
+        assertThat(rover.getCoordinates().getDirection()).isEqualTo(Direction.SOUTH);
+    }
 }

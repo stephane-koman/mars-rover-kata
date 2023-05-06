@@ -22,4 +22,10 @@ public class Rover {
             default -> throw new UnknownCommandException("Unknown command " + command);
         }
     }
+
+    public void receiveCommands(String commands) throws UnknownCommandException {
+        for (char command: commands.toCharArray()) {
+            receiveSingleCommand(command);
+        }
+    }
 }

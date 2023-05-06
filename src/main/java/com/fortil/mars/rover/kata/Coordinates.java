@@ -38,8 +38,8 @@ public class Coordinates {
         this.direction = direction;
     }
 
-    public void moveForward() {
-        move(direction);
+    public boolean moveForward() {
+        return move(direction);
     }
 
     public void setObstacles(List<Obstacle> obstacles) {
@@ -55,7 +55,7 @@ public class Coordinates {
         return false;
     }
 
-    public void move(Direction newDirection) {
+    public boolean move(Direction newDirection) {
         int xLocation = x.getLocation();
         int yLocation = y.getLocation();
 
@@ -69,18 +69,20 @@ public class Coordinates {
         if(!hasObstacle(xLocation, yLocation)){
             x.setLocation(xLocation);
             y.setLocation(yLocation);
+            return true;
         }
+        return false;
     }
 
-    public void moveBackward() {
-        move(direction.getBackwardDirection());
+    public boolean moveBackward() {
+        return move(direction.getBackwardDirection());
     }
 
-    public void goToLeft() {
+    public void turnToLeft() {
         changeDirection(-1);
     }
 
-    public void goToRight() {
+    public void turnToRight() {
         changeDirection(1);
     }
 

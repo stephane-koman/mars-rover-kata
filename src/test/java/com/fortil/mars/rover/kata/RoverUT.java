@@ -85,4 +85,21 @@ public class RoverUT {
         assertThat(rover.getCoordinates().getY().getLocation()).isEqualTo(y.getMaxLocation());
         assertThat(rover.getCoordinates().getDirection()).isEqualTo(Direction.SOUTH);
     }
+
+    @Test
+    void receiveCommands_should_go_from_one_edge_of_the_grid_to_other() throws UnknownCommandException {
+        int expected = x.getMaxLocation() + x.getLocation() - 2;
+        rover.receiveCommands("RFFF");
+        assertThat(rover.getCoordinates().getX().getLocation()).isEqualTo(expected);
+    }
+
+    @Test
+    void receiveCommands_should_stop_when_obstacle_is_found() throws UnknownCommandException {
+        int expected = x.getLocation() + 1;
+        rover.getCoordinates().setObstacles(List.of(new Obstacle(expected + 1, y.getLocation())));
+        rover.getCoordinates().setDirection(Direction.EAST);
+        rover.receiveCommands("FFFRF");
+        assertThat(rover.getCoordinates().getX().getLocation()).isEqualTo(expected);
+        assertThat(rover.getCoordinates().getDirection()).isEqualTo(Direction.EAST);
+    }
 }

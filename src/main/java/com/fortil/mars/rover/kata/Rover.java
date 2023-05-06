@@ -13,19 +13,29 @@ public class Rover {
         return coordinates;
     }
 
-    public void receiveSingleCommand(char command) throws UnknownCommandException {
+    public boolean receiveSingleCommand(char command) throws UnknownCommandException {
         switch (Character.toUpperCase(command)){
-            case 'F' -> getCoordinates().moveForward();
-            case 'B' -> getCoordinates().moveBackward();
-            case 'R' -> getCoordinates().goToRight();
-            case 'L' -> getCoordinates().goToLeft();
+            case 'F' -> {
+                return getCoordinates().moveForward();
+            }
+            case 'B' -> {
+                return getCoordinates().moveBackward();
+            }
+            case 'R' -> {
+                getCoordinates().turnToRight();
+                return true;
+            }
+            case 'L' -> {
+                getCoordinates().turnToLeft();
+                return true;
+            }
             default -> throw new UnknownCommandException("Unknown command " + command);
         }
     }
 
     public void receiveCommands(String commands) throws UnknownCommandException {
         for (char command: commands.toCharArray()) {
-            receiveSingleCommand(command);
+            if(!receiveSingleCommand(command)) break;
         }
     }
 }

@@ -60,4 +60,20 @@ public class CoordinatesUT {
         coordinates.moveForward();
         assertThat(coordinates.getY()).usingRecursiveComparison().isEqualTo(expected);
     }
+
+    @Test
+    void move_forward_should_decrease_x_when_direction_is_west() throws LocationException {
+        Point expected = new Point(x.getLocation() - 1, x.getMaxLocation());
+        coordinates.setDirection(Direction.WEST);
+        coordinates.moveForward();
+        assertThat(coordinates.getX()).usingRecursiveComparison().isEqualTo(expected);
+    }
+
+    @Test
+    void move_forward_should_decrease_y_when_direction_is_south() throws LocationException {
+        Point expected = new Point(y.getLocation() - 1, y.getMaxLocation());
+        coordinates.setDirection(Direction.SOUTH);
+        coordinates.moveForward();
+        assertThat(coordinates.getY()).usingRecursiveComparison().isEqualTo(expected);
+    }
 }

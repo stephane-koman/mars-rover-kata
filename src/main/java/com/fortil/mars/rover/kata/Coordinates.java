@@ -42,8 +42,17 @@ public class Coordinates {
         if(direction == Direction.EAST){
             x.setLocation(x.getForwardLocation());
         }
+
+        if(direction == Direction.WEST){
+            x.setLocation(x.getBackwardLocation());
+        }
+
         if(direction == Direction.NORTH){
             y.setLocation(y.getForwardLocation());
+        }
+
+        if(direction == Direction.SOUTH){
+            y.setLocation(y.getBackwardLocation());
         }
     }
 }

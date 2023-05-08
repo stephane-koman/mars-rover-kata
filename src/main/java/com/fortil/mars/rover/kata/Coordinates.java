@@ -16,7 +16,7 @@ public class Coordinates {
         this.x = x;
         this.y = y;
         setDirection(direction);
-        this.obstacles = obstacles;
+        setObstacles(obstacles);
     }
 
     public Point getX() {

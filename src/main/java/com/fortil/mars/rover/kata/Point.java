@@ -2,20 +2,23 @@ package com.fortil.mars.rover.kata;
 
 import com.fortil.mars.rover.kata.exceptions.LocationException;
 
+import java.text.MessageFormat;
+
 public class Point {
 
     private int location;
     private final int maxLocation;
+    private static final String LOCATION_ERROR_MESSAGE = "parameter cannot be less than";
 
     public Point(int location, int maxLocation) throws LocationException {
         if(location < 0)
-            throw new LocationException("Location parameter cannot be less than ZERO");
+            throw new LocationException(MessageFormat.format("Location {0} ZERO", LOCATION_ERROR_MESSAGE));
 
         if(maxLocation < 0)
-            throw new LocationException("maxLocation parameter cannot be less than ZERO");
+            throw new LocationException(MessageFormat.format("maxLocation {0} ZERO", LOCATION_ERROR_MESSAGE));
 
         if(maxLocation < location )
-            throw new LocationException("maxLocation parameter cannot be less than location parameter");
+            throw new LocationException(MessageFormat.format("maxLocation {0} location parameter", LOCATION_ERROR_MESSAGE));
 
         this.location = location;
         this.maxLocation = maxLocation;

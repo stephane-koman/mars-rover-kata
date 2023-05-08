@@ -2,31 +2,22 @@ package com.fortil.mars.rover.kata;
 
 import com.fortil.mars.rover.kata.exceptions.UnknownCommandException;
 
-public class Rover {
-
-    private final Coordinates coordinates;
-    public Rover(Coordinates coordinates) {
-        this.coordinates = coordinates;
-    }
-
-    public Coordinates getCoordinates() {
-        return coordinates;
-    }
+public record Rover(Coordinates coordinates) {
 
     public boolean receiveSingleCommand(char command) throws UnknownCommandException {
-        switch (Character.toUpperCase(command)){
+        switch (Character.toUpperCase(command)) {
             case 'F' -> {
-                return getCoordinates().moveForward();
+                return coordinates().moveForward();
             }
             case 'B' -> {
-                return getCoordinates().moveBackward();
+                return coordinates().moveBackward();
             }
             case 'R' -> {
-                getCoordinates().turnToRight();
+                coordinates().turnToRight();
                 return true;
             }
             case 'L' -> {
-                getCoordinates().turnToLeft();
+                coordinates().turnToLeft();
                 return true;
             }
             default -> throw new UnknownCommandException("Unknown command " + command);
@@ -34,12 +25,12 @@ public class Rover {
     }
 
     public void receiveCommands(String commands) throws UnknownCommandException {
-        for (char command: commands.toCharArray()) {
-            if(!receiveSingleCommand(command)) break;
+        for (char command : commands.toCharArray()) {
+            if (!receiveSingleCommand(command)) break;
         }
     }
 
     public String getPosition() {
-        return getCoordinates().toString();
+        return coordinates().toString();
     }
 }

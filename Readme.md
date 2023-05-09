@@ -22,6 +22,11 @@ Implementation - Rules
 * No red phases while refactoring.
 * Be careful about edge cases and exceptions. We can not afford to lose a mars rover, just because the developers overlooked a null pointer.
 
+JAVA Version
+-------
+* Minimum Java version : **Java 14** [ Because we are using **Record class** ]
+* Java version use to develop this app: **Java 17**
+
 Running
 -------
 
